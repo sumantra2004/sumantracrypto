@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Advanced Cryptographic Visualization System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Authentication Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="auth-icon">🔐</div>
+                <h2>Secure Access Required</h2>
+                <p>Enter the master key to access the cryptographic system</p>
+            </div>
+            
+            <div class="auth-form">
+                <div class="key-input-group">
+                    <label for="masterKey">Master Key</label>
+                    <input type="password" id="masterKey" placeholder="Enter master key..." autocomplete="off">
+                    <div class="key-hint">💡 Hint: The developer's name </div>
+                </div>
+                
+                <button id="authenticateBtn" class="auth-btn">
+                    <span class="btn-icon">🔓</span>
+                    <span class="btn-text">Unlock System</span>
+                    <div class="btn-ripple"></div>
+                </button>
+                
+                <div class="auth-attempts" id="authAttempts" style="display: none;">
+                    <span class="attempts-text">Attempts remaining: <span id="attemptsCount">3</span></span>
+                </div>
+            </div>
+            
+            <div class="auth-footer">
+                <div class="security-features">
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <span>Secure Authentication</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔒</span>
+                        <span>Encrypted Processing</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>Real-time Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app" style="display: none;">
+        <!-- Animated Background -->
+        <div class="animated-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+                <div class="shape shape-6"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <header class="hero-header">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">🔐</div>
+                        <h1 class="main-title">
+                            <span class="title-gradient">Cryptographic</span>
+                            <span class="title-normal">Visualization</span>
+                            <span class="title-gradient">System</span>
+                        </h1>
+                    </div>
+                    <p class="subtitle">Interactive encryption visualization with real-time algorithm demonstrations</p>
+                    <div class="tech-badges">
+                        <span class="badge frontend">Pure HTML/CSS/JS</span>
+                        <span class="badge backend">Flask Backend</span>
+                        <span class="badge capacity">500MB Capacity</span>
+                        <span class="badge security">Key: sumantra</span>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                </button>
+            </header>
+
+            <!-- Encryption Process Visualization -->
+            <section class="visualization-section">
+                <div class="section-header">
+                    <h2 class="section-title">🎯 Encryption Process Visualization</h2>
+                    <p class="section-subtitle">Watch how your data transforms through cryptographic algorithms</p>
+                </div>
+                
+                <div class="visualization-container">
+                    <div class="process-flow" id="processFlow">
+                        <div class="flow-step" id="step1">
+                            <div class="step-icon">📝</div>
+                            <div class="step-content">
+                                <h4>Input Data</h4>
+                                <p>Original plaintext or file</p>
+                            </div>
+                            <div class="step-data" id="inputData">Waiting for input...</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">▶</div>
+                        </div>
+                        
+                        <div class="flow-step" id="step2">
+                            <div class="step-icon">🔑</div>
+                            <div class="step-content">
+                                <h4>Key Generation</h4>
+                                <p>Algorithm-specific key</p>
+                            </div>
+                            <div class="step-data" id="keyData">Key: Ready</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">▶</div>
+                        </div>
+                        
+                        <div class="flow-step" id="step3">
+                            <div class="step-icon">⚙️</div>
+                            <div class="step-content">
+                                <h4>Algorithm Processing</h4>
+                                <p>Encryption transformation</p>
+                            </div>
+                            <div class="step-data" id="algorithmData">Algorithm: None</div>
+                        </div>
+                        
+                        <div class="flow-arrow">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">▶</div>
+                        </div>
+                        
+                        <div class="flow-step" id="step4">
+                            <div class="step-icon">🔒</div>
+                            <div class="step-content">
+                                <h4>Encrypted Output</h4>
+                                <p>Secure ciphertext</p>
+                            </div>
+                            <div class="step-data" id="outputData">Waiting for processing...</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Algorithm Comparison Visualization -->
+                    <div class="algorithm-comparison" id="algorithmComparison">
+                        <h3>Algorithm Performance Comparison</h3>
+                        <div class="comparison-charts">
+                            <div class="chart-container">
+                                <h4>Security Level</h4>
+                                <div class="chart-bars">
+                                    <div class="bar-item">
+                                        <span class="bar-label">RSA</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill rsa-bar" style="width: 85%"></div>
+                                        </div>
+                                        <span class="bar-value">85%</span>
+                                    </div>
+                                    <div class="bar-item">
+                                        <span class="bar-label">AES</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill aes-bar" style="width: 95%"></div>
+                                        </div>
+                                        <span class="bar-value">95%</span>
+                                    </div>
+                                    <div class="bar-item">
+                                        <span class="bar-label">DES</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill des-bar" style="width: 60%"></div>
+                                        </div>
+                                        <span class="bar-value">60%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <h4>Processing Speed</h4>
+                                <div class="chart-bars">
+                                    <div class="bar-item">
+                                        <span class="bar-label">RSA</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill rsa-bar" style="width: 40%"></div>
+                                        </div>
+                                        <span class="bar-value">40%</span>
+                                    </div>
+                                    <div class="bar-item">
+                                        <span class="bar-label">AES</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill aes-bar" style="width: 90%"></div>
+                                        </div>
+                                        <span class="bar-value">90%</span>
+                                    </div>
+                                    <div class="bar-item">
+                                        <span class="bar-label">DES</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill des-bar" style="width: 85%"></div>
+                                        </div>
+                                        <span class="bar-value">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-time Encryption Process Visualization -->
+            <section class="live-visualization-section">
+                <div class="section-header">
+                    <h2 class="section-title">🔍 Live Encryption Process</h2>
+                    <p class="section-subtitle">Watch your data transform step-by-step in real-time</p>
+                </div>
+                
+                <div class="live-process-container" id="liveProcessContainer" style="display: none;">
+                    <div class="process-header">
+                        <div class="algorithm-badge" id="currentAlgorithm">AES</div>
+                        <div class="process-timer">
+                            <span class="timer-label">Processing Time:</span>
+                            <span class="timer-value" id="processTimer">0ms</span>
+                        </div>
+                    </div>
+                    
+                    <!-- AES/DES Visualization -->
+                    <div class="symmetric-process" id="symmetricProcess" style="display: none;">
+                        <div class="process-steps">
+                            <div class="process-step" id="step-input">
+                                <div class="step-header">
+                                    <div class="step-number">1</div>
+                                    <div class="step-title">Input Text</div>
+                                    <div class="step-status" id="status-input">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box" id="inputTextBox">
+                                        <div class="data-label">Original Text:</div>
+                                        <div class="data-value" id="inputTextValue">Waiting...</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="step-padding">
+                                <div class="step-header">
+                                    <div class="step-number">2</div>
+                                    <div class="step-title">Padding Applied</div>
+                                    <div class="step-status" id="status-padding">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box" id="paddingBox">
+                                        <div class="data-label">Padded Text (Hex):</div>
+                                        <div class="data-value" id="paddedValue">Waiting...</div>
+                                    </div>
+                                    <div class="padding-info">
+                                        <span class="info-label">Block Size:</span>
+                                        <span class="info-value" id="blockSize">16 bytes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="step-key">
+                                <div class="step-header">
+                                    <div class="step-number">3</div>
+                                    <div class="step-title">Key & IV Applied</div>
+                                    <div class="step-status" id="status-key">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="key-info-grid">
+                                        <div class="data-box">
+                                            <div class="data-label">Encryption Key:</div>
+                                            <div class="data-value" id="encryptionKey">sumantrasumantra</div>
+                                        </div>
+                                        <div class="data-box">
+                                            <div class="data-label">IV (Base64):</div>
+                                            <div class="data-value" id="ivValue">Generating...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="step-encrypt">
+                                <div class="step-header">
+                                    <div class="step-number">4</div>
+                                    <div class="step-title">Encryption Process</div>
+                                    <div class="step-status" id="status-encrypt">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box" id="encryptionBox">
+                                        <div class="data-label">Encrypted Bytes (Hex):</div>
+                                        <div class="data-value" id="encryptedBytes">Processing...</div>
+                                    </div>
+                                    <div class="encryption-animation">
+                                        <div class="cipher-blocks">
+                                            <div class="cipher-block" id="block1">Block 1</div>
+                                            <div class="cipher-block" id="block2">Block 2</div>
+                                            <div class="cipher-block" id="block3">Block 3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="step-output">
+                                <div class="step-header">
+                                    <div class="step-number">5</div>
+                                    <div class="step-title">Base64 Encoding</div>
+                                    <div class="step-status" id="status-output">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box final-output">
+                                        <div class="data-label">Final Encrypted Output:</div>
+                                        <div class="data-value" id="finalOutput">Processing...</div>
+                                    </div>
+                                    <div class="output-stats">
+                                        <div class="stat">
+                                            <span class="stat-label">Original Size:</span>
+                                            <span class="stat-value" id="originalSizeViz">0 bytes</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Encrypted Size:</span>
+                                            <span class="stat-value" id="encryptedSizeViz">0 bytes</span>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="stat-label">Expansion:</span>
+                                            <span class="stat-value" id="expansionViz">0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RSA Visualization -->
+                    <div class="asymmetric-process" id="asymmetricProcess" style="display: none;">
+                        <div class="process-steps">
+                            <div class="process-step" id="rsa-step-input">
+                                <div class="step-header">
+                                    <div class="step-number">1</div>
+                                    <div class="step-title">Input Plaintext</div>
+                                    <div class="step-status" id="rsa-status-input">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box">
+                                        <div class="data-label">Original Text:</div>
+                                        <div class="data-value" id="rsaInputValue">Waiting...</div>
+                                    </div>
+                                    <div class="rsa-limit-info">
+                                        <span class="limit-label">RSA Limit:</span>
+                                        <span class="limit-value">~200 characters max</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="rsa-step-key">
+                                <div class="step-header">
+                                    <div class="step-number">2</div>
+                                    <div class="step-title">RSA Public Key</div>
+                                    <div class="step-status" id="rsa-status-key">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="rsa-key-display">
+                                        <div class="key-component">
+                                            <div class="component-label">Key Size:</div>
+                                            <div class="component-value">2048 bits</div>
+                                        </div>
+                                        <div class="key-component">
+                                            <div class="component-label">Public Exponent (e):</div>
+                                            <div class="component-value">65537</div>
+                                        </div>
+                                        <div class="key-component">
+                                            <div class="component-label">Modulus (n) - First 32 chars:</div>
+                                            <div class="component-value" id="rsaModulus">Loading...</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="rsa-step-encrypt">
+                                <div class="step-header">
+                                    <div class="step-number">3</div>
+                                    <div class="step-title">RSA Encryption</div>
+                                    <div class="step-status" id="rsa-status-encrypt">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="rsa-formula">
+                                        <div class="formula-display">
+                                            <span class="formula-text">C = M<sup>e</sup> mod n</span>
+                                        </div>
+                                        <div class="formula-explanation">
+                                            <div class="formula-part">
+                                                <span class="part-label">C:</span>
+                                                <span class="part-desc">Ciphertext</span>
+                                            </div>
+                                            <div class="formula-part">
+                                                <span class="part-label">M:</span>
+                                                <span class="part-desc">Message</span>
+                                            </div>
+                                            <div class="formula-part">
+                                                <span class="part-label">e:</span>
+                                                <span class="part-desc">Public exponent</span>
+                                            </div>
+                                            <div class="formula-part">
+                                                <span class="part-label">n:</span>
+                                                <span class="part-desc">Modulus</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector">
+                                <div class="connector-line"></div>
+                                <div class="connector-arrow">▼</div>
+                            </div>
+                            
+                            <div class="process-step" id="rsa-step-output">
+                                <div class="step-header">
+                                    <div class="step-number">4</div>
+                                    <div class="step-title">Encrypted Output</div>
+                                    <div class="step-status" id="rsa-status-output">⏳</div>
+                                </div>
+                                <div class="step-content">
+                                    <div class="data-box final-output">
+                                        <div class="data-label">RSA Encrypted (Base64):</div>
+                                        <div class="data-value" id="rsaFinalOutput">Processing...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Summary -->
+                    <div class="process-summary" id="processSummary" style="display: none;">
+                        <div class="summary-header">
+                            <h3>🎯 Process Complete</h3>
+                        </div>
+                        <div class="summary-stats">
+                            <div class="summary-stat">
+                                <div class="stat-icon">⏱️</div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Total Time</div>
+                                    <div class="stat-value" id="totalTime">0ms</div>
+                                </div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="stat-icon">🔐</div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Algorithm</div>
+                                    <div class="stat-value" id="summaryAlgorithm">AES</div>
+                                </div>
+                            </div>
+                            <div class="summary-stat">
+                                <div class="stat-icon">📊</div>
+                                <div class="stat-info">
+                                    <div class="stat-title">Status</div>
+                                    <div class="stat-value success">Success</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enhanced Algorithm Information with Visualizations -->
+            <section class="algorithm-showcase">
+                <div class="section-header">
+                    <h2 class="section-title">🛡️ Algorithm Deep Dive</h2>
+                    <p class="section-subtitle">Interactive exploration of cryptographic algorithms</p>
+                </div>
+                
+                <div class="algorithm-tabs">
+                    <button class="tab-btn active" data-algorithm="rsa">RSA Encryption</button>
+                    <button class="tab-btn" data-algorithm="aes">AES Encryption</button>
+                    <button class="tab-btn" data-algorithm="des">DES Encryption</button>
+                </div>
+                
+                <div class="algorithm-details">
+                    <!-- RSA Visualization -->
+                    <div class="algorithm-panel active" id="rsa-panel">
+                        <div class="algorithm-visual">
+                            <div class="visual-header">
+                                <h3>🔑 RSA (Rivest-Shamir-Adleman)</h3>
+                                <div class="algorithm-type">Asymmetric Encryption</div>
+                            </div>
+                            
+                            <div class="key-generation-visual">
+                                <h4>Key Generation Process</h4>
+                                <div class="key-steps">
+                                    <div class="key-step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-desc">
+                                            <strong>Prime Selection:</strong>
+                                            <div class="prime-visual">
+                                                <span class="prime-number">p = 61</span>
+                                                <span class="prime-number">q = 53</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="key-step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-desc">
+                                            <strong>Modulus:</strong>
+                                            <div class="calculation">n = p × q = 3233</div>
+                                        </div>
+                                    </div>
+                                    <div class="key-step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-desc">
+                                            <strong>Public Key:</strong>
+                                            <div class="key-pair">
+                                                <span class="public-key">(e=17, n=3233)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="key-step">
+                                        <div class="step-number">4</div>
+                                        <div class="step-desc">
+                                            <strong>Private Key:</strong>
+                                            <div class="key-pair">
+                                                <span class="private-key">(d=413, n=3233)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="encryption-demo">
+                                <h4>Encryption Process</h4>
+                                <div class="demo-flow">
+                                    <div class="demo-step">
+                                        <div class="demo-label">Message</div>
+                                        <div class="demo-value">M = 123</div>
+                                    </div>
+                                    <div class="demo-arrow">→</div>
+                                    <div class="demo-step">
+                                        <div class="demo-label">Formula</div>
+                                        <div class="demo-value">C = M^e mod n</div>
+                                    </div>
+                                    <div class="demo-arrow">→</div>
+                                    <div class="demo-step">
+                                        <div class="demo-label">Ciphertext</div>
+                                        <div class="demo-value">C = 855</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AES Visualization -->
+                    <div class="algorithm-panel" id="aes-panel">
+                        <div class="algorithm-visual">
+                            <div class="visual-header">
+                                <h3>⚡ AES (Advanced Encryption Standard)</h3>
+                                <div class="algorithm-type">Symmetric Encryption</div>
+                            </div>
+                            
+                            <div class="aes-rounds-visual">
+                                <h4>AES Encryption Rounds</h4>
+                                <div class="rounds-container">
+                                    <div class="round-step">
+                                        <div class="round-number">Initial</div>
+                                        <div class="round-operation">Add Round Key</div>
+                                        <div class="round-visual">
+                                            <div class="data-block">Plain Text</div>
+                                            <div class="operation-symbol">⊕</div>
+                                            <div class="key-block">Round Key 0</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="rounds-loop">
+                                        <div class="loop-header">Rounds 1-9</div>
+                                        <div class="round-operations">
+                                            <div class="operation">
+                                                <span class="op-icon">🔄</span>
+                                                <span>SubBytes</span>
+                                            </div>
+                                            <div class="operation">
+                                                <span class="op-icon">↔️</span>
+                                                <span>ShiftRows</span>
+                                            </div>
+                                            <div class="operation">
+                                                <span class="op-icon">🔢</span>
+                                                <span>MixColumns</span>
+                                            </div>
+                                            <div class="operation">
+                                                <span class="op-icon">🔑</span>
+                                                <span>AddRoundKey</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="round-step">
+                                        <div class="round-number">Final</div>
+                                        <div class="round-operation">Final Round</div>
+                                        <div class="final-operations">
+                                            <span>SubBytes → ShiftRows → AddRoundKey</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="aes-matrix-visual">
+                                <h4>State Matrix Transformation</h4>
+                                <div class="matrix-demo">
+                                    <div class="matrix">
+                                        <div class="matrix-label">Input</div>
+                                        <div class="matrix-grid">
+                                            <div class="matrix-cell">32</div>
+                                            <div class="matrix-cell">88</div>
+                                            <div class="matrix-cell">31</div>
+                                            <div class="matrix-cell">e0</div>
+                                            <div class="matrix-cell">43</div>
+                                            <div class="matrix-cell">5a</div>
+                                            <div class="matrix-cell">31</div>
+                                            <div class="matrix-cell">37</div>
+                                            <div class="matrix-cell">f6</div>
+                                            <div class="matrix-cell">30</div>
+                                            <div class="matrix-cell">98</div>
+                                            <div class="matrix-cell">07</div>
+                                            <div class="matrix-cell">a8</div>
+                                            <div class="matrix-cell">8d</div>
+                                            <div class="matrix-cell">a2</div>
+                                            <div class="matrix-cell">34</div>
+                                        </div>
+                                    </div>
+                                    <div class="transform-arrow">→</div>
+                                    <div class="matrix">
+                                        <div class="matrix-label">Output</div>
+                                        <div class="matrix-grid">
+                                            <div class="matrix-cell">39</div>
+                                            <div class="matrix-cell">02</div>
+                                            <div class="matrix-cell">dc</div>
+                                            <div class="matrix-cell">19</div>
+                                            <div class="matrix-cell">25</div>
+                                            <div class="matrix-cell">dc</div>
+                                            <div class="matrix-cell">11</div>
+                                            <div class="matrix-cell">6a</div>
+                                            <div class="matrix-cell">84</div>
+                                            <div class="matrix-cell">09</div>
+                                            <div class="matrix-cell">85</div>
+                                            <div class="matrix-cell">0b</div>
+                                            <div class="matrix-cell">1d</div>
+                                            <div class="matrix-cell">fb</div>
+                                            <div class="matrix-cell">97</div>
+                                            <div class="matrix-cell">32</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- DES Visualization -->
+                    <div class="algorithm-panel" id="des-panel">
+                        <div class="algorithm-visual">
+                            <div class="visual-header">
+                                <h3>📚 DES (Data Encryption Standard)</h3>
+                                <div class="algorithm-type">Symmetric Encryption</div>
+                            </div>
+                            
+                            <div class="des-structure-visual">
+                                <h4>DES Structure (Feistel Network)</h4>
+                                <div class="feistel-diagram">
+                                    <div class="feistel-input">
+                                        <div class="input-half left-half">L₀</div>
+                                        <div class="input-half right-half">R₀</div>
+                                    </div>
+                                    
+                                    <div class="feistel-rounds">
+                                        <div class="feistel-round">
+                                            <div class="round-label">Round 1</div>
+                                            <div class="round-structure">
+                                                <div class="left-path">L₁ = R₀</div>
+                                                <div class="right-path">
+                                                    <div class="f-function">F(R₀, K₁)</div>
+                                                    <div class="xor-operation">L₀ ⊕</div>
+                                                    <div class="result">= R₁</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="rounds-indicator">
+                                            <span>⋮</span>
+                                            <span>16 Rounds</span>
+                                            <span>⋮</span>
+                                        </div>
+                                        
+                                        <div class="feistel-round">
+                                            <div class="round-label">Round 16</div>
+                                            <div class="round-structure">
+                                                <div class="left-path">L₁₆ = R₁₅</div>
+                                                <div class="right-path">
+                                                    <div class="f-function">F(R₁₅, K₁₆)</div>
+                                                    <div class="xor-operation">L₁₅ ⊕</div>
+                                                    <div class="result">= R₁₆</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="feistel-output">
+                                        <div class="output-half">R₁₆</div>
+                                        <div class="output-half">L₁₆</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="des-key-schedule">
+                                <h4>Key Schedule</h4>
+                                <div class="key-expansion">
+                                    <div class="key-step">
+                                        <div class="step-label">64-bit Key</div>
+                                        <div class="key-visual">ranjeet!</div>
+                                    </div>
+                                    <div class="key-arrow">↓</div>
+                                    <div class="key-step">
+                                        <div class="step-label">56-bit Key (PC-1)</div>
+                                        <div class="key-visual">Permuted Key</div>
+                                    </div>
+                                    <div class="key-arrow">↓</div>
+                                    <div class="key-step">
+                                        <div class="step-label">16 Round Keys</div>
+                                        <div class="round-keys">
+                                            <div class="round-key">K₁</div>
+                                            <div class="round-key">K₂</div>
+                                            <div class="round-key">...</div>
+                                            <div class="round-key">K₁₆</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enhanced Text Encryption Section -->
+            <section class="encryption-section text-section">
+                <div class="section-header">
+                    <h2 class="section-title">📝 Interactive Text Encryption</h2>
+                    <p class="section-subtitle">Watch your text transform in real-time</p>
+                </div>
+                
+                <div class="encryption-panel">
+                    <div class="panel-grid">
+                        <div class="input-panel">
+                            <div class="panel-header">
+                                <h3>Input Text</h3>
+                                <div class="char-counter" id="charCounter">0 characters</div>
+                            </div>
+                            <div class="input-wrapper">
+                                <textarea id="textInput" placeholder="Enter your text here..." rows="6"></textarea>
+                                <div class="input-decoration"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="control-panel">
+                            <div class="algorithm-selector">
+                                <label>Choose Algorithm</label>
+                                <div class="custom-select">
+                                    <select id="textAlgorithm">
+                                        <option value="AES">🔒 AES (Recommended)</option>
+                                        <option value="DES">📚 DES (Educational)</option>
+                                        <option value="RSA">🔑 RSA (Small text only)</option>
+                                    </select>
+                                    <div class="select-arrow">▼</div>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="encryptTextBtn" class="action-btn encrypt-btn">
+                                    <span class="btn-icon">🔒</span>
+                                    <span class="btn-text">Encrypt</span>
+                                    <div class="btn-ripple"></div>
+                                </button>
+                                <button id="decryptTextBtn" class="action-btn decrypt-btn">
+                                    <span class="btn-icon">🔓</span>
+                                    <span class="btn-text">Decrypt</span>
+                                    <div class="btn-ripple"></div>
+                                </button>
+                                <button id="clearTextBtn" class="action-btn clear-btn">
+                                    <span class="btn-icon">🗑️</span>
+                                    <span class="btn-text">Clear</span>
+                                    <div class="btn-ripple"></div>
+                                </button>
+                            </div>
+                            
+                            <!-- Real-time Statistics -->
+                            <div class="encryption-stats" id="encryptionStats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Original Size:</span>
+                                    <span class="stat-value" id="originalSize">0 bytes</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Encrypted Size:</span>
+                                    <span class="stat-value" id="encryptedSize">0 bytes</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Expansion:</span>
+                                    <span class="stat-value" id="expansionRatio">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="output-panel">
+                            <div class="panel-header">
+                                <h3>Output Result</h3>
+                                <button id="copyResultBtn" class="copy-btn" title="Copy to clipboard">📋</button>
+                            </div>
+                            <div class="output-wrapper">
+                                <textarea id="textOutput" placeholder="Encrypted/Decrypted text will appear here..." rows="6" readonly></textarea>
+                                <div class="output-decoration"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Enhanced File Encryption Section -->
+            <section class="encryption-section file-section">
+                <div class="section-header">
+                    <h2 class="section-title">📁 File Encryption Vault</h2>
+                    <p class="section-subtitle">Secure any file type up to 500MB with visual feedback</p>
+                </div>
+                
+                <div class="file-encryption-panel">
+                    <div class="upload-zone">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-animation">
+                                <div class="upload-icon">📁</div>
+                                <div class="upload-rings">
+                                    <div class="ring ring-1"></div>
+                                    <div class="ring ring-2"></div>
+                                    <div class="ring ring-3"></div>
+                                </div>
+                            </div>
+                            <div class="upload-content">
+                                <h3>Drop files here or click to browse</h3>
+                                <p class="upload-description">Supports all file types with real-time processing visualization</p>
+                                <div class="upload-specs">
+                                    <span class="spec">📊 Max size: 500MB</span>
+                                    <span class="spec">🔒 Secure processing</span>
+                                    <span class="spec">⚡ Visual feedback</span>
+                                </div>
+                            </div>
+                            <input type="file" id="fileInput" hidden>
+                        </div>
+                        
+                        <div class="file-preview" id="fileInfo" style="display: none;">
+                            <div class="file-card">
+                                <div class="file-icon" id="fileIcon">📄</div>
+                                <div class="file-details">
+                                    <div class="file-name" id="fileName"></div>
+                                    <div class="file-meta">
+                                        <span class="file-size" id="fileSize"></span>
+                                        <span class="file-type" id="fileType"></span>
+                                    </div>
+                                </div>
+                                <div class="file-status">
+                                    <div class="status-indicator ready"></div>
+                                    <span>Ready for encryption</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="file-controls">
+                        <div class="algorithm-selector">
+                            <label>Encryption Algorithm</label>
+                            <div class="custom-select">
+                                <select id="fileAlgorithm">
+                                    <option value="AES">🔒 AES (Recommended for files)</option>
+                                    <option value="DES">📚 DES (Educational purpose)</option>
+                                </select>
+                                <div class="select-arrow">▼</div>
+                            </div>
+                            <small class="algorithm-note">💡 RSA not suitable for large file encryption</small>
+                        </div>
+                        
+                        <div class="file-actions">
+                            <button id="encryptFileBtn" class="action-btn encrypt-btn" disabled>
+                                <span class="btn-icon">🔒</span>
+                                <span class="btn-text">Encrypt File</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                            <button id="decryptFileBtn" class="action-btn decrypt-btn" disabled>
+                                <span class="btn-icon">🔓</span>
+                                <span class="btn-text">Decrypt File</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                            <button id="clearFileBtn" class="action-btn clear-btn">
+                                <span class="btn-icon">🗑️</span>
+                                <span class="btn-text">Clear</span>
+                                <div class="btn-ripple"></div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-section" id="progressSection" style="display: none;">
+                        <div class="progress-header">
+                            <h4 id="progressTitle">Processing...</h4>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar">
+                                <div class="progress-fill" id="progressFill"></div>
+                                <div class="progress-glow"></div>
+                            </div>
+                        </div>
+                        <div class="progress-details">
+                            <span id="progressStatus">Initializing...</span>
+                            <span id="progressSpeed"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-section" id="resultSection" style="display: none;">
+                        <div class="result-card">
+                            <div class="result-icon" id="resultIcon">✅</div>
+                            <div class="result-content">
+                                <h4 id="resultTitle">Operation Completed</h4>
+                                <p id="resultDescription">Your file has been processed successfully</p>
+                                <div class="result-stats" id="resultStats">
+                                    <div class="result-stat">
+                                        <span class="stat-label">Processing Time:</span>
+                                        <span class="stat-value" id="processingTime">0.0s</span>
+                                    </div>
+                                    <div class="result-stat">
+                                        <span class="stat-label">Size Change:</span>
+                                        <span class="stat-value" id="sizeChange">+0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="result-actions">
+                                <button id="downloadBtn" class="action-btn download-btn">
+                                    <span class="btn-icon">⬇️</span>
+                                    <span class="btn-text">Download</span>
+                                    <div class="btn-ripple"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Toast -->
+            <div id="statusToast" class="status-toast" style="display: none;">
+                <div class="toast-icon" id="toastIcon"></div>
+                <div class="toast-content">
+                    <div class="toast-title" id="toastTitle"></div>
+                    <div class="toast-message" id="toastMessage"></div>
+                </div>
+                <button class="toast-close" id="toastClose">×</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
